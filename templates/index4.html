@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Sistema de Portaria</title>
+    <style>
+ <style>
+        * {
+           box-sizing: border-box;
+       }
+       
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #f0f0f0;
+       }
+       
+       .container {
+           max-width: 800px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+       
+       .logo {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-bottom: 20px;
+       }
+       
+       .logo img {
+           max-width: 200px;
+       }
+       
+       h1 {
+           text-align: center;
+           font-size: 32px;
+           margin-bottom: 20px;
+           color: #333333;
+       }
+
+       body {
+           font-family: Arial, sans-serif;
+           margin: 20px;
+       }
+
+       h1 {
+           margin-bottom: 20px;
+           font-size: 40px;
+       }
+
+       table {
+           border-collapse: collapse;
+           width: 100%;
+           background-color: #4377a0;
+       }
+
+       th, td {
+           border: 1px solid #57b864;
+           padding: 8px;
+           background-color: #eeeeee;
+           font-size: 12px;
+       }
+
+       th {
+           background-color: #4aa582;
+           color: white;
+       }
+
+       form {
+           margin-bottom: 20px;
+       }
+
+       .form-group {
+           margin-bottom: 10px;
+       }
+
+       .form-group label {
+           display: block;
+           margin-bottom: 5px;
+       }
+
+       .form-group input[type="text"],
+       .form-group textarea,
+       .form-group input[type="date"],
+       .form-group input[type="time"],
+       .form-group input[type="number"] {
+           width: 100%;
+           padding: 5px;
+           border: 1px solid #ddd;
+           border-radius: 4px;
+       }
+
+       .form-group input[type="submit"] {
+           margin-top: 10px;
+           padding: 8px 16px;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+       .edit-link,
+       .delete-link {
+           color: blue;
+           cursor: pointer;
+           text-decoration: underline;
+       }
+
+       .edit-link:hover,
+       .delete-link:hover {
+           color: #0000FF;
+       }
+
+       .tab-buttons {
+           margin-bottom: 10px;
+       }
+
+       .tab-button {
+           background-color: #4CAF50;
+           color: white;
+           padding: 8px 16px;
+           border: none;
+           cursor: pointer;
+           border-radius: 4px;
+           margin-right: 10px;
+       }
+
+       .tab-button.active {
+           background-color: #45A049;
+       }
+
+       .tab-content {
+           display: none;
+       }
+
+       .tab-content.active {
+           display: block;
+       }
+
+       .tamanho {
+           font-size: 10px;
+       }
+
+       .logo {
+           display: flex;
+           align-items: center;
+           margin-bottom: 20px;
+       }
+
+       .logo img {
+           max-width: 300px;
+           margin-right: 30px;
+       }
+       .tab-buttons {
+           display: flex;
+           justify-content: center;
+           margin-bottom: 20px;
+       }
+       
+       .tab-button {
+           background-color: #333333;
+           color: #ffffff;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+           margin-right: 10px;
+           font-size: 16px;
+       }
+       
+       .tab-button.active {
+           background-color: #666666;
+       }
+       
+       .tab-content {
+           display: none;
+           background-color: #ffffff;
+           padding: 20px;
+           border-radius: 4px;
+       }
+       
+       .tab-content.active {
+           display: block;
+       }
+       
+       .form-group {
+           margin-bottom: 20px;
+       }
+       
+       .form-group label {
+           display: block;
+           margin-bottom: 5px;
+           color: #333333;
+       }
+       
+       .form-group input[type="text"],
+       .form-group input[type="number"],
+       .form-group textarea {
+           width: 100%;
+           padding: 10px;
+           border: 1px solid #cccccc;
+           border-radius: 4px;
+       }
+       
+       .form-group input[type="submit"] {
+           background-color: #333333;
+           color: #ffffff;
+           border: none;
+           border-radius: 4px;
+           padding: 10px 20px;
+           cursor: pointer;
+           font-size: 16px;
+       }
+       
+       .table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-bottom: 20px;
+       }
+       
+       .table th,
+       .table td {
+           padding: 10px;
+           border: 1px solid #cccccc;
+       }
+       
+       .table th {
+           background-color: #333333;
+           color: #ffffff;
+       }
+       
+       .table td {
+           background-color: #f0f0f0;
+       }
+   </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="https://www.udop.com.br/u_img/associadas/log_alcoolvale.png" alt="Logo registros2vale">
+        <h1>SISTEMA PORTARIA - </h1>  <h1><p style="font-size: 20px;">ㅤSAIDA DE PRODUTOS - BAGAÇO</p></h1>
+    </div>
+
+    <a href="http://portaria.unialco.com.br:5000" target="_blank">
+        <button>MEM DIARIO</button>
+      </a>
+
+      <a href="http://portaria.unialco.com.br:5002" target="_blank">
+        <button>NOTA FISCAL</button>
+      </a>
+
+      <a href="http://portaria.unialco.com.br:5001" target="_blank">
+        <button>ETANOL</button>
+      </a>
+
+
+
+    <a href="http://portaria.unialco.com.br:5012" target="_blank">
+        <button>ACUCAR SANTOS E GUARUJA</button>
+      </a>
+
+      <a href="http://portaria.unialco.com.br:5013" target="_blank">
+        <button> ACUCAR - ITURAMA</button>
+      </a>
+
+
+
+
+
+
+
+    <div class="tab-buttons" style="margin-left: 3%;">
+        <button class="tab-button active" data-tab="register">Adicionar Registro</button>
+        <button class="tab-button" data-tab="all">Todos os Registros</button>
+    </div>
+    
+    <div class="tab-content active" id="tab-register">
+        <form action="/adicionar" method="post">
+            <div class="form-group">
+                <label>Data:</label>
+                <input type="date" id="data" name="data" >
+            </div>
+            <div class="form-group" >
+                <label>Horário:</label >
+                <input type="time" id="horario" name="horario" >
+            </div>
+
+            <div class="form-group">
+                <label>Nome do Motorista:</label>
+                <input type="text" name="nome_motorista">
+            </div>
+            <div class="form-group">
+                <label>Tipo do Veículo:</label>
+                <input type="text" name="cpf">
+            </div>
+            <div class="form-group">
+                <label>Placa:</label>
+                <input type="text" name="placa" value="Cavalo Nº       ;Carreta Nº        ; Carreta2  Nº      ;" >
+            </div>
+            <div class="form-group">
+                <label>Nota Fiscal:</label>
+                <input type="number" name="nota_fiscal">
+            </div>
+            <div class="form-group">
+                <label>Capacidade:</label>
+                <input type="text" name="itens">
+            
+            </div>
+            <div class="form-group" style="display: none;">
+                <label>Peso Líquido:</label>
+                <input type="text" name="fornecedor">
+            </div>
+            <div class="form-group">
+                <label>Transportadora:</label>
+                <input type="text" name="destino">
+            </div>
+            <div class="form-group" style="display: none;">
+                <label>Horário de Entrada:</label>
+                <input type="time"  name="horario_entrada">
+            </div>
+
+            <div class="form-group" style="display: none;" >
+                <label>Liberação</label>
+                <input type="text" name="horario_saida">
+            </div>
+            <div class="form-group">
+                <label>Porteiro Entrada:</label>
+                <input type="text" name="porteiro">
+            </div>
+            <div class="form-group" style="display: none;">
+                <label>Entrada/Saída:</label>
+                <input type="text" name="entrada_saida" >
+            </div>
+            
+            <div class="form-group" style="display: none;">
+                <label>Natureza da Operação:</label>
+                <input type="text" name="natureza_operacao">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Adicionar Registro">
+            </div>
+        </form>
+    </div>
+
+    <div class="tab-content" id="tab-all">
+        {% if bagaco %}
+        <div class="filtro-data" style="background-color: rgb(211, 191, 191); width: 180px; border: solid 2px black; margin-left: 38%; border-collapse: collapse; width: 300px; border-radius: 10px; text-align: center;">
+            <H3>Filtrar Dados</H3>
+            <div style="padding: 10px;">
+                <label for="filtro-data-inicial">Data Inicial:</label>
+                <input type="date" id="filtro-data-inicial" onchange="filtrarbagaco()">
+            </div>
+            <div style="padding: 10px;">
+                <label for="filtro-data-final">Data Final:</label>
+                <input type="date" id="filtro-data-final" onchange="filtrarbagaco()">
+
+                <div style="padding: 10px; display: none;" >
+                    <label for="filtro-nome">Motorista</label>
+                    <input type="text" id="filtro-nome" onkeyup="filtrarbagaco()">
+                </div>
+
+                <div style="padding: 10px;">
+                    <label for="filtro-empresa">Nome/Empresa:</label>
+                    <input type="text" id="filtro-empresa" onkeyup="filtrarbagaco()">
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="tamanho">
+            <table id="tabela-bagaco">
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Horas</th>
+                    <th>Nome Motorista</th>
+                    <th>Tipo do Veículo</th>
+                    <th>Placas</th>
+                    <th>Nota Fiscal</th>
+                    <th>Capacidade</th>
+                    <th>Peso Líquido</th>
+                    <th>Transportadora</th>
+                    <th>Horário de Entrada</th>
+                    <th>Horário de Saida</th>
+                    <th>Porteiro</th>
+                    <th>Porteiro Entrada:</th>
+                    <th>Justificativa</th>
+                 
+                    <th>Ações</th>
+                </tr>
+                {% for registro in bagaco %}
+                <tr>
+                    <td>{{ registro[0] }}</td>
+                    <td>{{ registro[1] }}</td>
+                    <td>{{ registro[2] }}</td>
+                    <td>{{ registro[3] }}</td>
+                    <td>{{ registro[4] }}</td>
+                    <td>{{ registro[5] }}</td>
+                    <td>{{ registro[6] }}</td>
+                    <td>{{ registro[7] }}</td>
+                    <td>{{ registro[8] }}</td>
+                    <td>{{ registro[9] }}</td>
+                    <td>{{ registro[10] }}</td>
+                    <td>{{ registro[11] }}</td>
+                    <td>{{ registro[12] }}</td>
+                    <td>{{ registro[13] }}</td>
+                    <td>{{ registro[14] }}</td>
+                     
+                    <td>
+                        <span class="edit-link" onclick="location.href='/editar4/{{ registro[0] }}'"><button style="background-color: green; color: white; transition: 0.3s; ">Da Entrada</button></span>
+                        <form class="delete-form" action="/deletar/{{ registro[0] }}" method="post" style="display: inline;">
+                            <!-- Formulário de exclusão -->
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var tabButtons = document.getElementsByClassName('tab-button');
+        var tabContents = document.getElementsByClassName('tab-content');
+
+        for (var i = 0; i < tabButtons.length; i++) {
+            tabButtons[i].addEventListener('click', function() {
+                var tab = this.getAttribute('data-tab');
+
+                for (var j = 0; j < tabButtons.length; j++) {
+                    tabButtons[j].classList.remove('active');
+                }
+
+                for (var k = 0; k < tabContents.length; k++) {
+                    tabContents[k].classList.remove('active');
+                }
+
+                this.classList.add('active');
+                document.getElementById('tab-' + tab).classList.add('active');
+            });
+        }
+
+        var deleteForms = document.getElementsByClassName('delete-form');
+        for (var i = 0; i < deleteForms.length; i++) {
+            deleteForms[i].addEventListener('submit', function(event) {
+                var confirmation = confirm('Deseja excluir o registro?');
+                if (!confirmation) {
+                    event.preventDefault();
+                }
+            });
+        }
+        
+        
+        window.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === 'p') {
+            event.preventDefault();
+            printTable();
+        }
+    });
+
+    function printTable() {
+        var printContent = document.getElementById('tab-all').innerHTML;
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.inn
+        erHTML = originalContent;Q
+    }
+
+ 
+    // Obtém o elemento do input de horário de entrada
+    var horarioEntradaInput = document.getElementById("horario_entrada");
+
+    // Obtém a hora atual
+    var horaAtual = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    // Define o valor do input de horário de entrada para a hora atual
+    horarioEntradaInput.value = horaAtual;
+
+
+
+    // Obtém o elemento do input de data
+    var dataInput = document.getElementById("data");
+
+    // Obtém o elemento do input de horário
+    var horarioInput = document.getElementById("horario");
+
+    // Obtém a data atual
+    var dataAtual = new Date();
+
+    // Define o valor do input de data para a data atual
+    dataInput.value = dataAtual.toISOString().split('T')[0];
+
+    // Define o valor do input de horário para o horário atual
+    horarioInput.value = dataAtual.toTimeString().split(' ')[0];
+
+    
+
+
+    </script>
+
+<script>
+    function filtrarbagaco() {
+        var input = document.getElementById("filtro-motorista");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("tabela-bagaco");
+        var rows = table.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            var td = rows[i].getElementsByTagName("td")[3];
+            if (td) {
+                var motorista = td.textContent || td.innerText;
+                if (motorista.toUpperCase().indexOf(filter) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    
+</script>
+
+
+<script>
+    function filtrarbagaco() {
+        var inputInicial = document.getElementById("filtro-data-inicial");
+        var inputFinal = document.getElementById("filtro-data-final");
+        var dataInicial = new Date(inputInicial.value);
+        var dataFinal = new Date(inputFinal.value);
+
+        var table = document.getElementById("tabela-bagaco");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var td = rows[i].getElementsByTagName("td")[1];
+            if (td) {
+                var data = new Date(td.textContent || td.innerText);
+
+                if (data >= dataInicial && data <= dataFinal) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+<script>
+    // Resto do código
+
+    function filtrarbagaco() {
+        var inputNome, inputEmpresa, filterNome, filterEmpresa, table, tr, td, i, txtValue;
+        inputNome = document.getElementById("filtro-nome");
+        inputEmpresa = document.getElementById("filtro-empresa");
+        filterNome = inputNome.value.toUpperCase();
+        filterEmpresa = inputEmpresa.value.toUpperCase();
+        table = document.getElementById("tabela-bagaco");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length; j++) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filterNome) > -1 && txtValue.toUpperCase().indexOf(filterEmpresa) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Resto do código
+</script>
+
+
+
+
+
+</body>
+</html>

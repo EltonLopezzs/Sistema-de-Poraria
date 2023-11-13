@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Editar registros2</title>
+    <style>
+             td {
+            /* Estilo padrão para as células da tabela */
+            background-color: white;
+        }
+        
+        td:nth-child(1) {
+            /* Estilo para a primeira coluna (coluna 1) */
+            /* Adicione mais estilos, se necessário */
+        }
+
+        /* Estilo para células com o valor "Entrada" */
+        td:contains("Entrada") {
+            background-color: #FF4444;
+            color: white;
+        }
+
+        /* Estilo para células com o valor "Saída" */
+        td:contains("Saída") {
+            background-color: #00C851;
+            color: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #4377a0;
+        }
+
+        th, td {
+            border: 1px solid #57b864;
+            padding: 8px;
+            background-color: #f7f7f7;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #4aa582;
+            color: white;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group input[type="date"],
+        .form-group input[type="time"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .edit-link,
+        .delete-link {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .edit-link:hover,
+        .delete-link:hover {
+            color: #0000FF;
+        }
+
+        .tab-buttons {
+            margin-bottom: 10px;
+        }
+
+        .tab-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .tab-button.active {
+            background-color: #45A049;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tamanho {
+            font-size: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+           .
+        }
+    </style>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mask.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('input[name="cpf"]').mask('000.000.000-00');
+        });
+    </script>
+</head>
+<body>
+    <h1>Editar registros2</h1>
+
+    <form action="/editar3/{{ registros2[0] }}" method="POST">
+        <div class="form-group">
+            <label style="display: none;">Data:</label>
+            <input  style="display: none;" type="date" name="data" value="{{ registros2[1] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Horário:</label>
+            <input style="display: none;" type="time" name="horario" value="{{ registros2[2] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;" >Nome do Motorista:</label>
+            <input style="display: none;" type="text" name="nome_motorista" value="{{ registros2[3] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;" >CPF:</label>
+            <input style="display: none;"  type="number" name="cpf" value="{{ registros2[4] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Placa:</label>
+            <input style="display: none;" type="text" name="placa" value="{{ registros2[5] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Nota Fiscal:</label>
+            <input style="display: none;" type="number" name="nota_fiscal" value="{{ registros2[6] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Itens:</label>
+            <input style="display: none;" type="text" name="itens" value="{{ registros2[7] }}" readonly style="display: none;">
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Fornecedor:</label>
+            <input  style="display: none;"type="text" name="fornecedor" value="{{ registros2[8] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Destino:</label>
+            <input style="display: none;" type="text" name="destino" value="{{ registros2[9] }}" readonly>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label >Horário de Entrada:</label>
+            <input  type="text" name="horario_entrada" value="{{ registros2[10] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label>Horário de Saída:</label>
+            <input type="text" id="horario_saida" name="horario_saida" readonly>
+        </div>
+        <div class="form-group">
+            <label style="display: none;">Porteiro:</label>
+            <input  style="display: none;" type="text" name="porteiro" value="{{ registros2[12] }}" readonly>
+        </div>
+        <div class="form-group">
+            <label>Entrada/Saída:</label>
+            <select name="entrada_saida" required>
+                
+                <option value="Saída" {% if registros2[13] == 'Saída' %}selected{% endif %}>Saída</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label style="display: none;" >Natureza da Operação:</label>
+            <input  style="display: none;" type="text" name="natureza_operacao" value="{{ registros2[14] }}" readonly>
+        </div>
+        <div class="form-group">
+            <button type="submit">Salvar</button>
+        </div>
+    </form>
+</form>
+</body>
+
+<script>
+    // Obtém a hora atual do navegador
+    var dataAtual = new Date();
+    var horaAtual = dataAtual.toLocaleTimeString();
+
+    // Define o valor do campo de entrada com a hora atual
+    document.getElementById("horario_saida").value = horaAtual;
+</script>
+
+</html>

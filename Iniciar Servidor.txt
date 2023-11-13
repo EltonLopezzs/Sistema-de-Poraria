@@ -1,0 +1,46 @@
+ Por favor não esqueça de Alterar o ip do seu servidor linux para 
+ 192.168.1.67
+
+
+ 
+ 
+ 
+ 
+Linux 
+
+C:\Portaria\Portaria\.venv\Scripts\activate.bat
+Não esqueca de abrir as bibliotecas.
+
+
+source .venv/bin/activate
+
+Inicializador no LINUX 
+
+nohup python registros.py > app.log 2>&1 &
+nohup python app.py > app.log 2>&1 &
+nohup python app1.py > app1.log 2>&1 &
+nohup python app3.py > app1.log 2>&1 &
+nohup python consulta.py > app1.log 2>&1 &
+nohup python app4.py > app1.log 2>&1 &
+nohup python app5.py > app1.log 2>&1 &
+nohup python app6.py > app1.log 2>&1 &
+
+
+
+
+5011
+
+
+
+derrubar servi�o
+
+
+
+ps aux | grep "python registros.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python consulta.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app4.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app1.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app3.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app5.py" | grep -v grep | awk '{print $2}' | xargs kill
+ps aux | grep "python app6.py" | grep -v grep | awk '{print $2}' | xargs kill
